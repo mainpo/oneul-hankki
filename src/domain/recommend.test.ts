@@ -213,4 +213,16 @@ describe("recommend", () => {
     expect(egg2?.ingredients[0]?.amount).toBe(4);
     expect(egg4?.ingredients[0]?.amount).toBe(8);
   });
+
+  it("고른 재료를 쓰지 않는 요리는 하나부족으로 끼워 넣지 않는다", () => {
+    const results = recommend(
+      { selectedIds: ["egg"], customNames: [], timeFilter: "전체", servings: 1 },
+      fixtures,
+    );
+    const ids = results.map((row) => row.recipe.id);
+    expect(ids).toContain("egg-steam");
+    expect(ids).not.toContain("slow");
+    expect(ids).not.toContain("kimchi-rice");
+    expect(ids).not.toContain("pasta");
+  });
 });

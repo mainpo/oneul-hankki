@@ -32,6 +32,11 @@ function missingRequired(recipe: Recipe, selectedNames: Set<string>): string[] {
   return recipe.required.filter((id) => !ingredientIsSelected(id, selectedNames));
 }
 
+function usesSelection(recipe: Recipe, selectedNames: Set<string>): boolean {
+  if (recipe.required.length === 0) return true;
+  return recipe.required.some((id) => ingredientIsSelected(id, selectedNames));
+}
+
 function missingLabel(id: string): string {
   return ingredientById(id)?.name ?? id;
 }
@@ -43,16 +48,17 @@ export function describeRecipe(
   const hasSelection = query.selectedIds.length > 0 || query.customNames.length > 0;
   const selectedNames = selectedNameSet(query.selectedIds, query.customNames);
   const missing = hasSelection ? missingRequired(recipe, selectedNames) : [];
+  const overlaps = hasSelection && usesSelection(recipe, selectedNames);
 
   let status: Recommendation["status"] = "미선택";
   if (hasSelection && missing.length === 0) status = "가능";
-  else if (hasSelection && missing.length === 1) status = "하나부족";
+  else if (hasSelection && missing.length === 1 && overlaps) status = "하나부족";
   else if (hasSelection) status = "부족";
 
   return {
     recipe,
     status,
-    missingName: missing.length === 1 ? missingLabel(missing[0]) : null,
+    missingName: status === "하나부족" ? missingLabel(missing[0]) : null,
     ingredients: scaleIngredients(recipe.ingredients, query.servings),
   };
 }
@@ -65,22 +71,13 @@ export function recommend(
     return [];
   }
 
-  const selectedNames = selectedNameSet(query.selectedIds, query.customNames);
   const results: Recommendation[] = [];
 
   for (const recipe of recipes) {
     if (!passesTime(recipe.minutes, query.timeFilter)) continue;
-
-    const missing = missingRequired(recipe, selectedNames);
-    if (missing.length > 1) continue;
-
-    const status = missing.length === 0 ? "가능" : "하나부족";
-    results.push({
-      recipe,
-      status,
-      missingName: missing.length === 1 ? missingLabel(missing[0]) : null,
-      ingredients: scaleIngredients(recipe.ingredients, query.servings),
-    });
+    const row = describeRecipe(recipe, query);
+    if (row.status !== "가능" && row.status !== "하나부족") continue;
+    results.push(row);
   }
 
   return results.sort((a, b) => {

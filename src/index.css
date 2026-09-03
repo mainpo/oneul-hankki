@@ -273,9 +273,37 @@ legend {
   color: #fff;
 }
 
-.count {
-  margin: 0;
-  font-size: 0.88rem;
+.search-label {
+  display: block;
+  margin: 12px 0 6px;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.search-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.search-row input {
+  flex: 1;
+  min-width: 0;
+  min-height: 48px;
+  border: 2px solid var(--ink);
+  background: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 10px 12px;
+}
+
+.search-row button {
+  min-height: 48px;
+  border: 2px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  font-weight: 700;
+  padding: 10px 14px;
 }
 
 .empty {
@@ -427,7 +455,9 @@ legend {
   .segment button,
   .magnet,
   .add-row button,
-  .add-row input {
+  .add-row input,
+  .search-row input,
+  .search-row button {
     min-height: 52px;
     font-size: 1.05rem;
   }

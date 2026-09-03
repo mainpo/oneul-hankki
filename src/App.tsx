@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState, type CSSProperties, type FormEvent } from "react";
 import { CHECKLIST, foldIngredientName, STAPLES } from "./domain/catalog";
-import { recommend } from "./domain/recommend";
+import { describeRecipe, recommend } from "./domain/recommend";
+import { searchRecipes } from "./domain/search";
 import type { Recommendation, Servings, TimeFilter } from "./domain/types";
 import { loadState, saveState } from "./persistence";
 
@@ -19,6 +20,7 @@ export function App() {
   const [timeFilter, setTimeFilter] = useState<TimeFilter>("전체");
   const [servings, setServings] = useState<Servings>(1);
   const [draft, setDraft] = useState("");
+  const [search, setSearch] = useState("");
   const [openId, setOpenId] = useState<string | null>(null);
   const [hydrated, setHydrated] = useState(false);
 
@@ -40,8 +42,23 @@ export function App() {
     () => recommend({ selectedIds, customNames, timeFilter, servings }),
     [selectedIds, customNames, timeFilter, servings],
   );
+  const searching = search.trim().length > 0;
+  const searchResults = useMemo(() => {
+    if (!search.trim()) return [];
+    const query = { selectedIds, customNames, timeFilter, servings };
+    return searchRecipes(search)
+      .filter((recipe) =>
+        timeFilter === "15분"
+          ? recipe.minutes <= 15
+          : timeFilter === "30분"
+            ? recipe.minutes <= 30
+            : true,
+      )
+      .map((recipe) => describeRecipe(recipe, query));
+  }, [search, selectedIds, customNames, timeFilter, servings]);
 
-  const open = results.find((row) => row.recipe.id === openId) ?? null;
+  const visible = searching ? searchResults : results;
+  const open = visible.find((row) => row.recipe.id === openId) ?? null;
   const hasIngredients = selectedIds.length > 0 || customNames.length > 0;
   const possibleCount = results.filter((row) => row.status === "가능").length;
 
@@ -175,53 +192,95 @@ export function App() {
 
         <section className="results" aria-labelledby="results-heading">
           <div className="section-head">
-            <h2 id="results-heading">이걸로 되는 저녁</h2>
-            {hasIngredients ? (
+            <h2 id="results-heading">{searching ? "레시피 찾기" : "이걸로 되는 저녁"}</h2>
+            {searching ? (
+              <p className="count">{visible.length}개</p>
+            ) : hasIngredients ? (
               <p className="count">
                 가능 {possibleCount} · 하나 부족 {results.length - possibleCount}
               </p>
             ) : null}
           </div>
-          {!hasIngredients ? (
-            <p className="empty">재료를 고르면 오늘 한 끼가 여기 모입니다. 계란·김치·대파부터 눌러 보세요.</p>
+          <label className="search-label" htmlFor="recipe-search">
+            저장된 레시피 검색
+          </label>
+          <div className="search-row">
+            <input
+              id="recipe-search"
+              type="search"
+              value={search}
+              onChange={(event) => setSearch(event.target.value)}
+              placeholder="김치찌개, 계란, 파스타…"
+              autoComplete="off"
+            />
+            {searching ? (
+              <button type="button" onClick={() => setSearch("")}>
+                지우기
+              </button>
+            ) : null}
+          </div>
+          {searching && visible.length === 0 ? (
+            <p className="empty">
+              “{search.trim()}”에 해당하는 레시피가 없습니다. 요리 이름이나 재료 이름으로 다시 찾아 보세요.
+            </p>
+          ) : searching ? (
+            <RecipeList rows={visible} openId={openId} onToggle={setOpenId} />
+          ) : !hasIngredients ? (
+            <p className="empty">
+              재료를 고르거나, 위에서 요리 이름으로 찾아 보세요. 계란·김치·대파부터 눌러도 됩니다.
+            </p>
           ) : results.length === 0 ? (
             <p className="empty">
               이 조합으로는 지금 만들 수 있는 집밥이 없습니다. 재료를 더 고르거나 시간 칸을 넓혀 보세요.
             </p>
           ) : (
-            <ul className="recipes">
-              {results.map((row) => (
-                <li key={row.recipe.id}>
-                  <button
-                    type="button"
-                    className={`recipe-row${openId === row.recipe.id ? " is-open" : ""}`}
-                    aria-expanded={openId === row.recipe.id}
-                    onClick={() =>
-                      setOpenId((current) =>
-                        current === row.recipe.id ? null : row.recipe.id,
-                      )
-                    }
-                  >
-                    <span className="recipe-name">{row.recipe.name}</span>
-                    <span className="meta">
-                      <span>{row.recipe.minutes}분</span>
-                      <span>{row.recipe.cuisine}</span>
-                      {row.status === "하나부족" && row.missingName ? (
-                        <span className="missing">{row.missingName}만 있으면</span>
-                      ) : (
-                        <span className="ready">지금 가능</span>
-                      )}
-                    </span>
-                  </button>
-                </li>
-              ))}
-            </ul>
+            <RecipeList rows={visible} openId={openId} onToggle={setOpenId} />
           )}
         </section>
       </div>
 
       {open ? <RecipePanel row={open} servings={servings} onClose={() => setOpenId(null)} /> : null}
     </div>
+  );
+}
+
+function statusLabel(row: Recommendation) {
+  if (row.status === "가능") return <span className="ready">지금 가능</span>;
+  if (row.status === "하나부족" && row.missingName) {
+    return <span className="missing">{row.missingName}만 있으면</span>;
+  }
+  return null;
+}
+
+function RecipeList({
+  rows,
+  openId,
+  onToggle,
+}: {
+  rows: Recommendation[];
+  openId: string | null;
+  onToggle: (id: string | null) => void;
+}) {
+  return (
+    <ul className="recipes">
+      {rows.map((row) => (
+        <li key={row.recipe.id}>
+          <button
+            type="button"
+            className={`recipe-row${openId === row.recipe.id ? " is-open" : ""}`}
+            aria-expanded={openId === row.recipe.id}
+            onClick={() => onToggle(openId === row.recipe.id ? null : row.recipe.id)}
+          >
+            <span className="recipe-name">{row.recipe.name}</span>
+            <span className="meta">
+              <span>{row.recipe.minutes}분</span>
+              <span>{row.recipe.cuisine}</span>
+              {statusLabel(row)}
+            </span>
+          </button>
+        </li>
+      ))}
+    </ul>
   );
 }
 

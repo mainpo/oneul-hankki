@@ -1,7 +1,7 @@
 export type Cuisine = "한식" | "집양식";
 export type TimeFilter = "15분" | "30분" | "전체";
 export type Servings = 1 | 2 | 4;
-export type MatchStatus = "가능" | "하나부족";
+export type MatchStatus = "가능" | "하나부족" | "부족" | "미선택";
 
 export type Ingredient = {
   id: string;

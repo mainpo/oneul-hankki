@@ -92,7 +92,7 @@ export function App() {
                 aria-pressed={timeFilter === option}
                 onClick={() => setTimeFilter(option)}
               >
-                {option}
+                {timeFilter === option ? `✓ ${option}` : option}
               </button>
             ))}
           </div>
@@ -107,7 +107,7 @@ export function App() {
                 aria-pressed={servings === option}
                 onClick={() => setServings(option)}
               >
-                {option}인분
+                {servings === option ? `✓ ${option}인분` : `${option}인분`}
               </button>
             ))}
           </div>
@@ -135,7 +135,7 @@ export function App() {
                   style={{ "--tilt": `${((index % 5) - 2) * 0.4}deg` } as CSSProperties}
                   onClick={() => toggleId(item.id)}
                 >
-                  {item.name}
+                  {selectedIds.includes(item.id) ? `✓ ${item.name}` : item.name}
                 </button>
               </li>
             ))}
@@ -157,7 +157,7 @@ export function App() {
             <ul className="custom-list">
               {customNames.map((name) => (
                 <li key={name}>
-                  <span>{name}</span>
+                  <span>✓ {name}</span>
                   <button
                     type="button"
                     className="text-btn"
@@ -194,7 +194,7 @@ export function App() {
                 <li key={row.recipe.id}>
                   <button
                     type="button"
-                    className="recipe-row"
+                    className={`recipe-row${openId === row.recipe.id ? " is-open" : ""}`}
                     aria-expanded={openId === row.recipe.id}
                     onClick={() =>
                       setOpenId((current) =>

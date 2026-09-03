@@ -513,4 +513,384 @@ export const RECIPES: Recipe[] = [
   ], [
     "오이와 토마토를 썰어 식초·소금에 버무린다.",
   ]),
+  recipe("kimchi-gyeran-bokkeum", "김치계란볶음", "한식", 10, ["kimchi", "egg"], [
+    item("김치", 80, "g"),
+    item("계란", 2, "개"),
+    item("식용유", 1, "작은술", true),
+  ], [
+    "김치를 볶다가 계란을 풀어 함께 익힌다.",
+  ]),
+  recipe("pa-gyeran-bokkeum", "대파계란볶음", "한식", 8, ["green-onion", "egg"], [
+    item("대파", 40, "g"),
+    item("계란", 2, "개"),
+    item("식용유", 1, "작은술", true),
+    item("소금", 1, "꼬집", true),
+  ], [
+    "대파를 먼저 볶아 향을 내고 계란을 넣어 섞는다.",
+  ]),
+  recipe("gochujang-gyeran-bap", "고추장계란밥", "한식", 5, ["egg", "rice"], [
+    item("밥", 1, "공기"),
+    item("계란", 1, "개"),
+    item("고추장", 1, "작은술", true),
+    item("참기름", 1, "작은술", true),
+  ], [
+    "밥에 계란후라이를 올리고 고추장과 참기름을 비빈다.",
+  ]),
+  recipe("samgyeopsal-gui", "삼겹살구이", "한식", 15, ["pork"], [
+    item("돼지고기", 150, "g"),
+    item("소금", 1, "꼬집", true),
+    item("후추", null, "조금", true),
+  ], [
+    "소금·후추를 뿌려 팬에 앞뒤로 굽는다.",
+    "상추나 깻잎이 있으면 싸 먹는다.",
+  ]),
+  recipe("jeyuk-kimchi", "제육김치볶음", "한식", 20, ["pork", "kimchi"], [
+    item("돼지고기", 120, "g"),
+    item("김치", 100, "g"),
+    item("고추장", 0.5, "큰술", true),
+  ], [
+    "돼지고기를 볶다가 김치를 넣고 고추장으로 간한다.",
+  ]),
+  recipe("pork-sukju", "돼지고기숙주볶음", "한식", 15, ["pork", "mung-sprout"], [
+    item("돼지고기", 100, "g"),
+    item("숙주", 120, "g"),
+    item("간장", 1, "작은술", true),
+    item("식용유", 1, "큰술", true),
+  ], [
+    "돼지고기를 먼저 볶고 숙주를 넣어 숨이 죽을 때까지만 볶는다.",
+  ]),
+  recipe("beef-sukju", "소고기숙주볶음", "한식", 12, ["beef", "mung-sprout"], [
+    item("소고기", 80, "g"),
+    item("숙주", 120, "g"),
+    item("간장", 1, "작은술", true),
+    item("식용유", 1, "큰술", true),
+  ], [
+    "소고기를 볶고 숙주를 넣어 재빨리 섞는다.",
+  ]),
+  recipe("dak-gui", "닭가슴살구이", "한식", 15, ["chicken"], [
+    item("닭고기", 150, "g"),
+    item("소금", 1, "꼬집", true),
+    item("후추", null, "조금", true),
+  ], [
+    "두툼하게 펴서 소금·후추로 굽는다.",
+  ]),
+  recipe("dak-bokkeumbap", "닭볶음밥", "한식", 15, ["chicken", "rice"], [
+    item("닭고기", 80, "g"),
+    item("밥", 1, "공기"),
+    item("간장", 1, "작은술", true),
+    item("식용유", 1, "큰술", true),
+  ], [
+    "닭을 먼저 볶고 밥을 넣어 간장으로 볶는다.",
+  ]),
+  recipe("dak-kimchi-jjim", "닭김치찜", "한식", 35, ["chicken", "kimchi"], [
+    item("닭고기", 180, "g"),
+    item("김치", 150, "g"),
+    item("고춧가루", 1, "작은술", true),
+    item("물", 200, "ml", true),
+  ], [
+    "닭과 김치를 함께 볶다가 물을 붓고 자작하게 끓인다.",
+  ]),
+  recipe("gamja-gyeran-bokkeum", "감자계란볶음", "한식", 15, ["potato", "egg"], [
+    item("감자", 1, "개"),
+    item("계란", 2, "개"),
+    item("식용유", 1, "큰술", true),
+    item("소금", 1, "꼬집", true),
+  ], [
+    "감자를 채 썰어 익힌 뒤 계란을 풀어 섞는다.",
+  ]),
+  recipe("beoseot-gyeran-guk", "버섯계란국", "한식", 12, ["mushroom", "egg"], [
+    item("버섯", 80, "g"),
+    item("계란", 1, "개"),
+    item("물", 350, "ml", true),
+    item("간장", 1, "작은술", true),
+  ], [
+    "버섯을 넣고 끓이다 계란을 흘려 넣는다.",
+  ]),
+  recipe("kongnamul-bap", "콩나물밥", "한식", 15, ["bean-sprout", "rice"], [
+    item("콩나물", 80, "g"),
+    item("밥", 1, "공기"),
+    item("간장", 1, "작은술", true),
+    item("참기름", 1, "작은술", true),
+  ], [
+    "데친 콩나물을 밥에 올리고 간장·참기름을 둘러 비빈다.",
+  ]),
+  recipe("ojingeo-deopbap", "오징어덮밥", "한식", 20, ["squid", "rice", "onion"], [
+    item("오징어", 120, "g"),
+    item("밥", 1, "공기"),
+    item("양파", 0.3, "개"),
+    item("고추장", 1, "큰술", true),
+  ], [
+    "오징어와 양파를 고추장에 볶아 밥 위에 올린다.",
+  ]),
+  recipe("ojingeo-kimchi", "오징어김치볶음", "한식", 15, ["squid", "kimchi"], [
+    item("오징어", 120, "g"),
+    item("김치", 80, "g"),
+    item("고춧가루", 0.5, "작은술", true),
+  ], [
+    "김치와 오징어를 센 불에서 짧게 볶는다.",
+  ]),
+  recipe("saewoo-gyeran-jjim", "새우계란찜", "한식", 15, ["shrimp", "egg"], [
+    item("새우", 60, "g"),
+    item("계란", 2, "개"),
+    item("물", 60, "ml", true),
+    item("소금", 1, "꼬집", true),
+  ], [
+    "새우를 넣고 계란물을 부어 찐다.",
+  ]),
+  recipe("matsal-bokkeum", "맛살볶음", "한식", 8, ["crab-stick"], [
+    item("맛살", 80, "g"),
+    item("식용유", 1, "작은술", true),
+    item("간장", 0.5, "작은술", true),
+  ], [
+    "맛살을 찢어 팬에 살짝 볶는다.",
+  ]),
+  recipe("matsal-gyeran", "맛살계란볶음", "한식", 10, ["crab-stick", "egg"], [
+    item("맛살", 60, "g"),
+    item("계란", 2, "개"),
+    item("식용유", 1, "작은술", true),
+  ], [
+    "맛살을 볶다가 계란을 풀어 섞는다.",
+  ]),
+  recipe("ssam-bap", "상추쌈밥", "한식", 10, ["lettuce", "rice"], [
+    item("상추", 50, "g"),
+    item("밥", 1, "공기"),
+    item("고추장", 1, "작은술", true),
+    item("참기름", 1, "작은술", true),
+  ], [
+    "고추장과 참기름을 섞어 밥과 상추에 싸 먹는다.",
+  ]),
+  recipe("kkaennip-ssam", "깻잎쌈", "한식", 10, ["perilla", "pork"], [
+    item("깻잎", 10, "장"),
+    item("돼지고기", 100, "g"),
+    item("소금", 1, "꼬집", true),
+  ], [
+    "돼지고기를 구워 깻잎에 싸 먹는다.",
+  ]),
+  recipe("gochu-doenjang", "고추된장무침", "한식", 5, ["chili"], [
+    item("고추", 3, "개"),
+    item("된장", 1, "큰술", true),
+    item("마늘", 0.5, "쪽", true),
+  ], [
+    "고추를 어슷 썰어 된장에 찍어 먹거나 살짝 무친다.",
+  ]),
+  recipe("oi-onion-muchim", "오이양파무침", "한식", 8, ["cucumber", "onion"], [
+    item("오이", 1, "개"),
+    item("양파", 0.25, "개"),
+    item("식초", 1, "작은술", true),
+    item("소금", 1, "꼬집", true),
+  ], [
+    "오이와 양파를 얇게 썰어 식초·소금에 무친다.",
+  ]),
+  recipe("paprika-bokkeum", "파프리카볶음", "한식", 10, ["paprika"], [
+    item("파프리카", 1, "개"),
+    item("식용유", 1, "작은술", true),
+    item("소금", 1, "꼬집", true),
+  ], [
+    "파프리카를 채 썰어 숨이 죽을 때까지만 볶는다.",
+  ]),
+  recipe("paprika-gyeran", "파프리카계란볶음", "한식", 10, ["paprika", "egg"], [
+    item("파프리카", 0.5, "개"),
+    item("계란", 2, "개"),
+    item("식용유", 1, "작은술", true),
+  ], [
+    "파프리카를 볶다가 계란을 넣어 섞는다.",
+  ]),
+  recipe("broccoli-gyeran", "브로콜리계란볶음", "한식", 12, ["broccoli", "egg"], [
+    item("브로콜리", 80, "g"),
+    item("계란", 2, "개"),
+    item("식용유", 1, "작은술", true),
+    item("소금", 1, "꼬집", true),
+  ], [
+    "브로콜리를 볶다가 계란을 풀어 함께 익힌다.",
+  ]),
+  recipe("dubu-gyeran-tang", "두부계란탕", "한식", 15, ["tofu", "egg"], [
+    item("두부", 120, "g"),
+    item("계란", 1, "개"),
+    item("물", 350, "ml", true),
+    item("간장", 1, "작은술", true),
+  ], [
+    "두부를 넣고 끓이다 계란을 풀어 넣는다.",
+  ]),
+  recipe("ham-kimchi-bap", "햄김치볶음밥", "한식", 15, ["ham", "kimchi", "rice"], [
+    item("햄", 50, "g"),
+    item("김치", 80, "g"),
+    item("밥", 1, "공기"),
+    item("식용유", 1, "큰술", true),
+  ], [
+    "햄과 김치를 볶고 밥을 넣어 볶는다.",
+  ]),
+  recipe("spam-gyeran-bap", "스팸계란볶음밥", "한식", 12, ["spam", "egg", "rice"], [
+    item("스팸", 60, "g"),
+    item("계란", 1, "개"),
+    item("밥", 1, "공기"),
+    item("식용유", 1, "큰술", true),
+  ], [
+    "스팸과 계란을 볶고 밥을 넣어 섞는다.",
+  ]),
+  recipe("tuna-kimchi-bap", "참치김치볶음밥", "한식", 12, ["tuna", "kimchi", "rice"], [
+    item("참치캔", 0.5, "캔"),
+    item("김치", 80, "g"),
+    item("밥", 1, "공기"),
+  ], [
+    "김치와 참치를 볶고 밥을 넣어 볶는다.",
+  ]),
+  recipe("pork-kimchi-bap", "돼지고기김치볶음밥", "한식", 15, ["pork", "kimchi", "rice"], [
+    item("돼지고기", 70, "g"),
+    item("김치", 80, "g"),
+    item("밥", 1, "공기"),
+  ], [
+    "돼지고기와 김치를 볶고 밥을 넣는다.",
+  ]),
+  recipe("gyeran-ramen", "계란라면", "한식", 10, ["ramen", "egg"], [
+    item("라면", 1, "봉지"),
+    item("계란", 1, "개"),
+    item("물", 500, "ml", true),
+  ], [
+    "라면을 끓이다 마지막에 계란을 풀어 넣는다.",
+  ]),
+  recipe("sausage-ramen", "소시지라면", "한식", 12, ["ramen", "sausage"], [
+    item("라면", 1, "봉지"),
+    item("소시지", 50, "g"),
+    item("물", 500, "ml", true),
+  ], [
+    "소시지를 넣고 라면을 끓인다.",
+  ]),
+  recipe("cheese-ramen", "치즈라면", "한식", 10, ["ramen", "cheese"], [
+    item("라면", 1, "봉지"),
+    item("치즈", 1, "장"),
+    item("물", 450, "ml", true),
+  ], [
+    "라면이 익으면 불을 끄고 치즈를 올려 녹인다.",
+  ]),
+  recipe("spam-ramen", "스팸라면", "한식", 12, ["ramen", "spam"], [
+    item("라면", 1, "봉지"),
+    item("스팸", 50, "g"),
+    item("물", 500, "ml", true),
+  ], [
+    "스팸을 넣고 라면을 끓인다.",
+  ]),
+  recipe("cheese-scramble", "치즈스크램블", "집양식", 10, ["egg", "cheese", "milk"], [
+    item("계란", 2, "개"),
+    item("치즈", 20, "g"),
+    item("우유", 1, "큰술"),
+    item("버터", 5, "g"),
+  ], [
+    "약불에서 저어 익히다 치즈를 넣어 녹인다.",
+  ]),
+  recipe("tomato-cheese-pasta", "토마토치즈파스타", "집양식", 25, ["spaghetti", "tomato", "cheese"], [
+    item("스파게티면", 80, "g"),
+    item("토마토", 1.5, "개"),
+    item("치즈", 20, "g"),
+    item("마늘", 1, "쪽", true),
+  ], [
+    "토마토 소스에 면을 버무린 뒤 치즈를 올린다.",
+  ]),
+  recipe("bacon-tomato-pasta", "베이컨토마토파스타", "집양식", 25, ["spaghetti", "bacon", "tomato"], [
+    item("스파게티면", 80, "g"),
+    item("베이컨", 40, "g"),
+    item("토마토", 1, "개"),
+  ], [
+    "베이컨을 볶고 토마토를 으깨 면에 버무린다.",
+  ]),
+  recipe("ham-cheese-toast", "햄치즈토스트", "집양식", 10, ["bread", "ham", "cheese"], [
+    item("식빵", 2, "장"),
+    item("햄", 1, "장"),
+    item("치즈", 1, "장"),
+    item("버터", 5, "g"),
+  ], [
+    "식빵에 햄과 치즈를 넣고 팬에서 굽는다.",
+  ]),
+  recipe("sausage-egg-toast", "소시지에그토스트", "집양식", 12, ["bread", "sausage", "egg"], [
+    item("식빵", 2, "장"),
+    item("소시지", 40, "g"),
+    item("계란", 1, "개"),
+  ], [
+    "소시지와 계란을 익혀 식빵에 올린다.",
+  ]),
+  recipe("yogurt-salad", "요거트샐러드", "집양식", 8, ["yogurt", "lettuce"], [
+    item("요거트", 80, "g"),
+    item("상추", 50, "g"),
+    item("소금", 1, "꼬집", true),
+  ], [
+    "상추를 요거트에 가볍게 버무린다.",
+  ]),
+  recipe("oi-yogurt", "오이요거트무침", "집양식", 5, ["yogurt", "cucumber"], [
+    item("요거트", 80, "g"),
+    item("오이", 1, "개"),
+    item("소금", 1, "꼬집", true),
+  ], [
+    "오이를 얇게 썰어 요거트에 무친다.",
+  ]),
+  recipe("chicken-cheese-salad", "치킨치즈샐러드", "집양식", 15, ["chicken", "cheese", "lettuce"], [
+    item("닭고기", 80, "g"),
+    item("치즈", 20, "g"),
+    item("상추", 50, "g"),
+  ], [
+    "구운 닭과 치즈를 상추 위에 올린다.",
+  ]),
+  recipe("shrimp-salad", "새우샐러드", "집양식", 12, ["shrimp", "lettuce"], [
+    item("새우", 70, "g"),
+    item("상추", 50, "g"),
+    item("소금", 1, "꼬집", true),
+  ], [
+    "새우를 익혀 상추와 함께 담는다.",
+  ]),
+  recipe("mushroom-omelette", "버섯오믈렛", "집양식", 15, ["egg", "mushroom"], [
+    item("계란", 2, "개"),
+    item("버섯", 50, "g"),
+    item("버터", 5, "g"),
+    item("소금", 1, "꼬집", true),
+  ], [
+    "버섯을 볶고 계란을 부어 접는다.",
+  ]),
+  recipe("tomato-omelette", "토마토오믈렛", "집양식", 15, ["egg", "tomato"], [
+    item("계란", 2, "개"),
+    item("토마토", 0.5, "개"),
+    item("버터", 5, "g"),
+  ], [
+    "토마토를 볶고 계란을 부어 접는다.",
+  ]),
+  recipe("butter-potato", "버터감자구이", "집양식", 20, ["potato", "butter"], [
+    item("감자", 1.5, "개"),
+    item("버터", 10, "g"),
+    item("소금", 1, "꼬집", true),
+  ], [
+    "감자를 한입 크기로 썰어 버터에 노릇하게 굽는다.",
+  ]),
+  recipe("cheese-potato", "치즈감자구이", "집양식", 20, ["potato", "cheese"], [
+    item("감자", 1.5, "개"),
+    item("치즈", 30, "g"),
+    item("소금", 1, "꼬집", true),
+  ], [
+    "감자를 구운 뒤 치즈를 올려 녹인다.",
+  ]),
+  recipe("matsal-salad", "맛살샐러드", "집양식", 8, ["crab-stick", "lettuce"], [
+    item("맛살", 60, "g"),
+    item("상추", 40, "g"),
+    item("소금", 1, "꼬집", true),
+  ], [
+    "맛살을 찢어 상추와 함께 담는다.",
+  ]),
+  recipe("paprika-salad", "파프리카샐러드", "집양식", 8, ["paprika", "lettuce"], [
+    item("파프리카", 0.5, "개"),
+    item("상추", 40, "g"),
+    item("식초", 1, "작은술", true),
+  ], [
+    "파프리카와 상추를 썰어 식초에 버무린다.",
+  ]),
+  recipe("bacon-bokkeumbap", "베이컨볶음밥", "집양식", 12, ["bacon", "rice"], [
+    item("베이컨", 40, "g"),
+    item("밥", 1, "공기"),
+    item("간장", 0.5, "작은술", true),
+  ], [
+    "베이컨 기름에 밥을 볶는다.",
+  ]),
+  recipe("ham-bokkeumbap", "햄계란볶음밥", "집양식", 12, ["ham", "egg", "rice"], [
+    item("햄", 50, "g"),
+    item("계란", 1, "개"),
+    item("밥", 1, "공기"),
+    item("식용유", 1, "큰술", true),
+  ], [
+    "햄과 계란을 볶고 밥을 넣어 섞는다.",
+  ]),
 ];

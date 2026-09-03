@@ -46,7 +46,7 @@ export const CHECKLIST: Ingredient[] = [
   { id: "butter", name: "버터", aliases: [] },
   { id: "bread", name: "식빵", aliases: ["빵"] },
   { id: "rice", name: "밥", aliases: ["햇반", "쌀밥", "흰밥"] },
-  { id: "spaghetti", name: "스파게티면", aliases: ["스파게티", "파스타", "파스타면"] },
+  { id: "spaghetti", name: "파스타면", aliases: ["스파게티면", "스파게티", "파스타"] },
   { id: "ramen", name: "라면", aliases: ["라면사리"] },
   { id: "tuna", name: "참치캔", aliases: ["참치"] },
   { id: "squid", name: "오징어", aliases: [] },

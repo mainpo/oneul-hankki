@@ -893,4 +893,121 @@ export const RECIPES: Recipe[] = [
   ], [
     "햄과 계란을 볶고 밥을 넣어 섞는다.",
   ]),
+  recipe("egg-pasta", "계란파스타", "집양식", 15, ["spaghetti", "egg"], [
+    item("파스타면", 80, "g"),
+    item("계란", 1, "개"),
+    item("식용유", 1, "큰술", true),
+    item("후추", null, "조금", true),
+  ], [
+    "면을 삶아 계란·기름·후추에 재빨리 버무린다.",
+  ]),
+  recipe("cheese-pasta", "치즈파스타", "집양식", 15, ["spaghetti", "cheese"], [
+    item("파스타면", 80, "g"),
+    item("치즈", 30, "g"),
+    item("버터", 8, "g"),
+    item("후추", null, "조금", true),
+  ], [
+    "삶은 면에 버터와 치즈를 넣어 녹여 가며 버무린다.",
+  ]),
+  recipe("butter-pasta", "버터파스타", "집양식", 12, ["spaghetti", "butter"], [
+    item("파스타면", 80, "g"),
+    item("버터", 15, "g"),
+    item("소금", 1, "꼬집", true),
+  ], [
+    "삶은 면에 버터를 녹여 간한다.",
+  ]),
+  recipe("carbonara", "까르보나라", "집양식", 20, ["spaghetti", "bacon", "egg"], [
+    item("파스타면", 80, "g"),
+    item("베이컨", 40, "g"),
+    item("계란", 1, "개"),
+    item("치즈", 15, "g"),
+    item("후추", null, "조금", true),
+  ], [
+    "베이컨을 볶고, 불에서 내려 계란·치즈와 면을 버무린다.",
+  ]),
+  recipe("arrabbiata", "아라비아타파스타", "집양식", 20, ["spaghetti", "tomato", "chili"], [
+    item("파스타면", 80, "g"),
+    item("토마토", 1.5, "개"),
+    item("고추", 1, "개"),
+    item("마늘", 1, "쪽", true),
+  ], [
+    "고추와 마늘을 볶고 토마토를 으깨 면에 버무린다.",
+  ]),
+  recipe("kimchi-pasta", "김치파스타", "집양식", 20, ["spaghetti", "kimchi"], [
+    item("파스타면", 80, "g"),
+    item("김치", 80, "g"),
+    item("식용유", 1, "큰술", true),
+  ], [
+    "김치를 볶아 삶은 면과 함께 버무린다.",
+  ]),
+  recipe("meat-pasta", "미트파스타", "집양식", 25, ["spaghetti", "pork", "onion"], [
+    item("파스타면", 80, "g"),
+    item("돼지고기", 80, "g"),
+    item("양파", 0.3, "개"),
+    item("토마토", 1, "개"),
+  ], [
+    "돼지고기와 양파를 볶고 토마토를 넣어 면에 버무린다.",
+  ]),
+  recipe("beef-pasta", "소고기파스타", "집양식", 25, ["spaghetti", "beef"], [
+    item("파스타면", 80, "g"),
+    item("소고기", 70, "g"),
+    item("간장", 1, "작은술", true),
+    item("마늘", 1, "쪽", true),
+  ], [
+    "소고기를 볶아 간장으로 간하고 면에 버무린다.",
+  ]),
+  recipe("chicken-pasta", "치킨파스타", "집양식", 25, ["spaghetti", "chicken"], [
+    item("파스타면", 80, "g"),
+    item("닭고기", 80, "g"),
+    item("마늘", 1, "쪽", true),
+    item("식용유", 1, "큰술", true),
+  ], [
+    "닭을 구워 찢어 면과 마늘 오일에 버무린다.",
+  ]),
+  recipe("veggie-pasta", "야채파스타", "집양식", 20, ["spaghetti", "onion", "carrot"], [
+    item("파스타면", 80, "g"),
+    item("양파", 0.3, "개"),
+    item("당근", 0.3, "개"),
+    item("식용유", 1, "큰술", true),
+  ], [
+    "야채를 볶아 삶은 면과 함께 버무린다.",
+  ]),
+  recipe("broccoli-pasta", "브로콜리파스타", "집양식", 20, ["spaghetti", "broccoli"], [
+    item("파스타면", 80, "g"),
+    item("브로콜리", 80, "g"),
+    item("마늘", 1, "쪽", true),
+    item("식용유", 1, "큰술", true),
+  ], [
+    "브로콜리를 볶아 면에 버무린다.",
+  ]),
+  recipe("zucchini-pasta", "애호박파스타", "집양식", 20, ["spaghetti", "zucchini"], [
+    item("파스타면", 80, "g"),
+    item("애호박", 0.5, "개"),
+    item("마늘", 1, "쪽", true),
+    item("식용유", 1, "큰술", true),
+  ], [
+    "애호박을 볶아 면에 버무린다.",
+  ]),
+  recipe("paprika-pasta", "파프리카파스타", "집양식", 20, ["spaghetti", "paprika"], [
+    item("파스타면", 80, "g"),
+    item("파프리카", 0.5, "개"),
+    item("마늘", 1, "쪽", true),
+    item("식용유", 1, "큰술", true),
+  ], [
+    "파프리카를 볶아 면에 버무린다.",
+  ]),
+  recipe("shrimp-tomato-pasta", "새우토마토파스타", "집양식", 25, ["spaghetti", "shrimp", "tomato"], [
+    item("파스타면", 80, "g"),
+    item("새우", 70, "g"),
+    item("토마토", 1, "개"),
+  ], [
+    "새우를 익히고 토마토 소스에 면을 버무린다.",
+  ]),
+  recipe("tuna-tomato-pasta", "참치토마토파스타", "집양식", 20, ["spaghetti", "tuna", "tomato"], [
+    item("파스타면", 80, "g"),
+    item("참치캔", 0.5, "캔"),
+    item("토마토", 1, "개"),
+  ], [
+    "참치와 토마토를 볶아 면에 버무린다.",
+  ]),
 ];

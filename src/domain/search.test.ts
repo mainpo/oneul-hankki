@@ -64,6 +64,11 @@ describe("searchRecipes", () => {
     expect(hits.map((row) => row.id)).toEqual(["kimchi-jjigae"]);
   });
 
+  it("파스타라고 치면 파스타 요리가 나온다", () => {
+    const hits = searchRecipes("파스타", fixtures);
+    expect(hits.map((row) => row.id)).toEqual(["pasta"]);
+  });
+
   it("이름에 검색어가 들어있는 요리를 앞에 둔다", () => {
     const hits = searchRecipes("김치", fixtures);
     expect(hits[0]?.name.startsWith("김치")).toBe(true);

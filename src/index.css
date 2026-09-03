@@ -306,8 +306,28 @@ legend {
   padding: 10px 14px;
 }
 
-.empty {
-  margin: 18px 0 8px;
+.catalog-toggle {
+  width: 100%;
+  min-height: 52px;
+  margin: 10px 0 4px;
+  border: 2px solid var(--ink);
+  background: #fff;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.catalog-toggle[aria-pressed="true"] {
+  background: var(--gochujang);
+  color: #fff;
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.catalog h3 {
+  margin: 18px 0 0;
+  font-family: "Song Myung", "Batang", serif;
+  font-size: 1.25rem;
+  font-weight: 400;
 }
 
 .recipes {
@@ -457,7 +477,8 @@ legend {
   .add-row button,
   .add-row input,
   .search-row input,
-  .search-row button {
+  .search-row button,
+  .catalog-toggle {
     min-height: 52px;
     font-size: 1.05rem;
   }

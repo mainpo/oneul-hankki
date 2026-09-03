@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState, type CSSProperties, type FormEvent } from "react";
 import { CHECKLIST, foldIngredientName, STAPLES } from "./domain/catalog";
 import { describeRecipe, recommend } from "./domain/recommend";
+import { RECIPES } from "./domain/recipes";
 import { searchRecipes } from "./domain/search";
 import type { Recommendation, Servings, TimeFilter } from "./domain/types";
 import { loadState, saveState } from "./persistence";
@@ -21,6 +22,7 @@ export function App() {
   const [servings, setServings] = useState<Servings>(1);
   const [draft, setDraft] = useState("");
   const [search, setSearch] = useState("");
+  const [showCatalog, setShowCatalog] = useState(false);
   const [openId, setOpenId] = useState<string | null>(null);
   const [hydrated, setHydrated] = useState(false);
 
@@ -46,19 +48,25 @@ export function App() {
   const searchResults = useMemo(() => {
     if (!search.trim()) return [];
     const query = { selectedIds, customNames, timeFilter, servings };
-    return searchRecipes(search)
-      .filter((recipe) =>
-        timeFilter === "15분"
-          ? recipe.minutes <= 15
-          : timeFilter === "30분"
-            ? recipe.minutes <= 30
-            : true,
-      )
-      .map((recipe) => describeRecipe(recipe, query));
+    return searchRecipes(search).map((recipe) => describeRecipe(recipe, query));
   }, [search, selectedIds, customNames, timeFilter, servings]);
+  const catalogRows = useMemo(() => {
+    const query = { selectedIds, customNames, timeFilter, servings };
+    return [...RECIPES]
+      .sort((a, b) => a.name.localeCompare(b.name, "ko"))
+      .map((recipe) => describeRecipe(recipe, query));
+  }, [selectedIds, customNames, timeFilter, servings]);
+  const koreanCatalog = catalogRows.filter((row) => row.recipe.cuisine === "한식");
+  const westernCatalog = catalogRows.filter((row) => row.recipe.cuisine === "집양식");
 
   const visible = searching ? searchResults : results;
-  const open = visible.find((row) => row.recipe.id === openId) ?? null;
+  const open =
+    (searching
+      ? searchResults
+      : showCatalog
+        ? catalogRows
+        : results
+    ).find((row) => row.recipe.id === openId) ?? null;
   const hasIngredients = selectedIds.length > 0 || customNames.length > 0;
   const possibleCount = results.filter((row) => row.status === "가능").length;
 
@@ -219,12 +227,28 @@ export function App() {
               </button>
             ) : null}
           </div>
+          <button
+            type="button"
+            className="catalog-toggle"
+            aria-pressed={showCatalog}
+            onClick={() => setShowCatalog((open) => !open)}
+          >
+            {showCatalog ? "✓ 전체 레시피 닫기" : `전체 레시피 보기 · ${RECIPES.length}개`}
+          </button>
           {searching && visible.length === 0 ? (
             <p className="empty">
               “{search.trim()}”에 해당하는 레시피가 없습니다. 요리 이름이나 재료 이름으로 다시 찾아 보세요.
             </p>
           ) : searching ? (
             <RecipeList rows={visible} openId={openId} onToggle={setOpenId} />
+          ) : showCatalog ? (
+            <div className="catalog">
+              <p className="hint">한식 {koreanCatalog.length}개 · 집양식 {westernCatalog.length}개. 눌러서 재료와 순서를 봅니다.</p>
+              <h3>한식</h3>
+              <RecipeList rows={koreanCatalog} openId={openId} onToggle={setOpenId} />
+              <h3>집양식</h3>
+              <RecipeList rows={westernCatalog} openId={openId} onToggle={setOpenId} />
+            </div>
           ) : !hasIngredients ? (
             <p className="empty">
               재료를 고르거나, 위에서 요리 이름으로 찾아 보세요. 계란·김치·대파부터 눌러도 됩니다.
